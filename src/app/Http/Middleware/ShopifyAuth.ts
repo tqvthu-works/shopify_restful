@@ -10,7 +10,7 @@ export const ShopifyAuth = async (
     req: Request,
     res: Response,
     next: NextFunction,
-) => {
+): Promise<Response | void> => {
     const token = req.headers.authorization?.replace('Bearer ', '') || '';
     try {
         if (_.get(req, 'query.is_testing')) {
@@ -19,7 +19,7 @@ export const ShopifyAuth = async (
                     shopify_domain: _.get(req, 'query.shopify_domain', ''),
                 },
             });
-            if (!shop || shop && !_.get(shop, 'dataValues.is_test')) {
+            if (!shop || (shop && !_.get(shop, 'dataValues.is_test'))) {
                 return res.status(httpStatus.UNAUTHORIZED).json({
                     status: false,
                 });

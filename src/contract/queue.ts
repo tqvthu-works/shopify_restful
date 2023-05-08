@@ -1,5 +1,5 @@
 interface IJob {
-    delay?: number
+    delay?: number;
 }
 export interface IWebhookRegisterJobData extends IJob {
     shopify_domain: string;

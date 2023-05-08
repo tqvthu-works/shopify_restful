@@ -1,0 +1,8 @@
+node_modules
+dist
+.vscode
+# .github
+.env
+.history
+.idea
+package-lock.json

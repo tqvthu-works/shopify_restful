@@ -5,7 +5,7 @@ import { Container as AppContainer } from '@core/container';
 import { Manager as QueueManager } from '@core/queue/manager';
 
 global.container = new Container();
-global._ = require("lodash");
+global._ = require('lodash');
 
 Provider.load();
 I18n.load();

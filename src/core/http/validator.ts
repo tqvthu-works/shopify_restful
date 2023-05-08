@@ -14,11 +14,7 @@ export abstract class Validator {
     protected next: NextFunction;
     protected resourceNotFound = false; // used for resource not found on api get detail
 
-    constructor(
-        request: Request,
-        response: Response,
-        next: NextFunction,
-    ) {
+    constructor(request: Request, response: Response, next: NextFunction) {
         this.request = request;
         this.response = response;
         this.next = next;
@@ -72,10 +68,12 @@ export abstract class Validator {
                 errors: Object.assign({}, ...errors.array()),
             });
         }
-        return this.response.status(HTTP_STATUS_CODE.UNPROCESSABLE_ENTITY).json({
-            status: false,
-            errors: Object.assign({}, ...errors.array()),
-        });
+        return this.response
+            .status(HTTP_STATUS_CODE.UNPROCESSABLE_ENTITY)
+            .json({
+                status: false,
+                errors: Object.assign({}, ...errors.array()),
+            });
     }
     private errorFormatter({ msg, param }: ValidationError): any {
         if (typeof msg === 'object') {

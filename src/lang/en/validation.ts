@@ -11,7 +11,8 @@ export default {
     */
 
     accepted: 'The {{attribute}} must be accepted.',
-    accepted_if: 'The {{attribute}} must be accepted when {{other}} is {{value}}.',
+    accepted_if:
+        'The {{attribute}} must be accepted when {{other}} is {{value}}.',
     active_url: 'The {{attribute}} is not a valid URL.',
     after: 'The {{attribute}} must be a date after :date.',
     after_or_equal: 'The {{attribute}} must be a date after or equal to :date.',
@@ -36,7 +37,8 @@ export default {
     date_equals: 'The {{attribute}} must be a date equal to :date.',
     date_format: 'The {{attribute}} does not match the format :format.',
     declined: 'The {{attribute}} must be declined.',
-    declined_if: 'The {{attribute}} must be declined when {{other}} is {{value}}.',
+    declined_if:
+        'The {{attribute}} must be declined when {{other}} is {{value}}.',
     different: 'The {{attribute}} and {{other}} must be different.',
     digits: 'The {{attribute}} must be :digits digits.',
     digits_between: 'The {{attribute}} must be between :min and :max digits.',
@@ -47,7 +49,8 @@ export default {
     doesnt_start_with:
         'The {{attribute}} may not start with one of the following: {{value}}s.',
     email: 'The {{attribute}} must be a valid email address.',
-    ends_with: 'The {{attribute}} must end with one of the following: {{value}}s.',
+    ends_with:
+        'The {{attribute}} must end with one of the following: {{value}}s.',
     enum: 'The selected {{attribute}} is invalid.',
     exists: 'The selected {{attribute}} is invalid.',
     file: 'The {{attribute}} must be a file.',
@@ -61,7 +64,8 @@ export default {
     gte: {
         array: 'The {{attribute}} must have {{value}} items or more.',
         file: 'The {{attribute}} must be greater than or equal to {{value}} kilobytes.',
-        numeric: 'The {{attribute}} must be greater than or equal to {{value}}.',
+        numeric:
+            'The {{attribute}} must be greater than or equal to {{value}}.',
         string: 'The {{attribute}} must be greater than or equal to {{value}} characters.',
     },
     image: 'The {{attribute}} must be an image.',
@@ -120,12 +124,14 @@ export default {
         'The {{attribute}} field is prohibited when {{other}} is {{value}}.',
     prohibited_unless:
         'The {{attribute}} field is prohibited unless {{other}} is in {{value}}s.',
-    prohibits: 'The {{attribute}} field prohibits {{other}} from being present.',
+    prohibits:
+        'The {{attribute}} field prohibits {{other}} from being present.',
     regex: 'The {{attribute}} format is invalid.',
     required: 'The {{attribute}} field is required.',
     required_array_keys:
         'The {{attribute}} field must contain entries for: {{value}}s.',
-    required_if: 'The {{attribute}} field is required when {{other}} is {{value}}.',
+    required_if:
+        'The {{attribute}} field is required when {{other}} is {{value}}.',
     required_if_accepted:
         'The {{attribute}} field is required when {{other}} is accepted.',
     required_unless:
