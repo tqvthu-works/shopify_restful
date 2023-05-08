@@ -17,16 +17,16 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://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@github.com/tqvthu/rest_ts.git"
+        "url": "https://github.com/tqvthu-works/shopify_restful.git"
     },
     "keywords": [
         "restful",
         "shopify_api"
     ],
-    "author": "thu.tqv",
+    "author": "tqvthu.works",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/tqvthu/rest_ts/issues"
+        "url": "https://github.com/tqvthu-works/shopify_restful/issues"
     },
     "_moduleAliases": {
         "@config": "./dist/config",
