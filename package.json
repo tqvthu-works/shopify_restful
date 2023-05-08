@@ -7,7 +7,7 @@
         "tsc": "tsc",
         "serve": "node --inspect dist/app/app.js",
         "local": "npm run lint && concurrently \"tsc -w\" \"nodemon dist/app/app.js\"",
-        "queue:worker": "node --inspect dist/app/worker.js",
+        "queue:work": "node --inspect dist/app/worker.js",
         "queue:listen": "npm run lint && concurrently \"tsc -w\" \"nodemon dist/app/worker.js\"",
         "build": "npm run lint && tsc",
         "lint": "eslint \"**/*.{js,ts}\" --quiet --fix",
@@ -20,7 +20,8 @@
         "url": "git+https://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@github.com/tqvthu/rest_ts.git"
     },
     "keywords": [
-        "rest"
+        "restful",
+        "shopify_api"
     ],
     "author": "thu.tqv",
     "license": "ISC",

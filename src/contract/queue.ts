@@ -1,7 +1,4 @@
-interface IJob {
-    delay?: number;
-}
-export interface IWebhookRegisterJobData extends IJob {
+export interface IWebhookRegisterJobData {
     shopify_domain: string;
     access_token: string;
 }

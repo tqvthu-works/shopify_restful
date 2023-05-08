@@ -24,12 +24,13 @@ This is a backend API project built with Node.js and TypeScript. It is used as t
 ##### To get into console, use:
 ```npm run tinker```
 ##### To run a worker, use:
-- ```npm run worker --queue={queueName}```
-- or specific connection ```npm run worker <connection_name> --queue={queueName}```
+- Production: ```npm run queue:work --queue={queueName}```
+- Local: ```npm run queue:listen --queue={queueName}```
+- or specific connection ```npm run queue:work <connection_name> --queue={queueName}```
 
 ## Some Utils
-- Use lodash: _.get(object, <field_name>)
-- Use container to get instance: container.get(<BoundClass>)
+- Use lodash: ```_.get(object, <field_name>)```
+- Use container to get instance: ```container.get(<BoundClass>)```
 ## Dispatch job
 - Dispatch: ``` new <JobClass>()
             .setJobData({
@@ -40,9 +41,8 @@ This is a backend API project built with Node.js and TypeScript. It is used as t
 - Delayed Dispatching ``` new <JobClass>()
             .setJobData({
                 field_1: 'filed_1',
-                field_n: 'filed_n',
-                delay:  <num_of_milliseconds>
-            })
+                field_n: 'filed_n'
+            }).delay(moment().add(5, 'minutes'))
             .dispatch();```
 
 ## Resource for building RESTful API

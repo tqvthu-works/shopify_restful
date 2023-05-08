@@ -11,7 +11,7 @@ export class WebhookRegister extends JobQueue<IWebhookRegisterJobData> {
     }
 
     public async handle(): Promise<void> {
-        const jobData = this.getJobData();
+        const jobData = this.getPayload();
         const shopifyDomain = jobData.shopify_domain;
         const accessToken = jobData.access_token;
         const shopifyApiService: ShopifyApiService =

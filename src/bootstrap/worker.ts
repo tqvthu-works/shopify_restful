@@ -50,7 +50,7 @@ export class Worker {
                 const module = require(`@app/Jobs/${data.job_path}`);
                 const jobHandler = module[data.job_path];
                 const instance = new jobHandler();
-                instance.setJobData(data.data);
+                instance.setPayload(data.data);
                 await instance.handle();
                 const end = Date.now();
                 ConsoleLog.info(

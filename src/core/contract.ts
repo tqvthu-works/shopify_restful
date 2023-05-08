@@ -1,3 +1,5 @@
+import { Command } from 'commander';
+
 /* Any Object */
 export interface AnyObject {
     [key: string]: any;
@@ -14,7 +16,7 @@ export interface IJobData<T = AnyObject> {
     data: T;
 }
 
-import { Command } from 'commander';
+/* For Console Command */
 export interface ICommand {
     handle(program: Command): Promise<any>;
 }

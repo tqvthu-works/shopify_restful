@@ -3,6 +3,7 @@ import 'reflect-metadata';
 import { Command } from 'commander';
 import { ICommand } from '@core/contract';
 import fs from 'fs';
+import _ from 'lodash';
 
 class Kernel {
     public static load(): void {
