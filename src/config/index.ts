@@ -14,4 +14,4 @@ import { apiConfiguration } from './api';
 export { apiConfiguration };
 
 import { redisConfig } from './redis';
-export { redisConfig }
+export { redisConfig };
