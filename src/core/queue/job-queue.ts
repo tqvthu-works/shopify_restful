@@ -20,7 +20,7 @@ export abstract class JobQueue<P = any> {
         this.payload = payload;
         return this;
     }
-    public getPayload(): T {
+    public getPayload(): P {
         return this.payload;
     }
     public delay(delay: moment.Moment): this {
@@ -32,7 +32,7 @@ export abstract class JobQueue<P = any> {
         const jobHandlerPath = this.path
             ? `${this.path}/${this.constructor.name}`
             : this.constructor.name;
-        const jobData: IJobData<T> = {
+        const jobData: IJobData<P> = {
             job_path: jobHandlerPath,
             data: this.payload,
         };
