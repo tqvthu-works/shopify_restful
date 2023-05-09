@@ -1,10 +1,10 @@
 import 'reflect-metadata';
+import './boot';
 import Queue, { Job } from 'bull';
 import { redisConfig } from '@config/redis';
 import { REDIS } from '@constant/redis';
 import { ConsoleLog } from '@app/Helpers/ConsoleLog';
 import { IJobData } from '@core/contract';
-import './boot';
 
 export class Worker {
     private queue: string;
