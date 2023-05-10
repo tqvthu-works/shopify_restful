@@ -17,6 +17,8 @@ This is a backend API project built with Node.js and TypeScript. It is used as t
 ```npx sequelize migration:create --name=<name>```
 - Migrate DB
 ```npm run sequelize db:migrate```
+- Help
+```npx sequelize --help```
 ##### To start the web server for local development, run:
 ```npm run local```
 ##### To run a command line, use:

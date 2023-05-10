@@ -11,6 +11,8 @@ import axios from 'axios';
 import { IAccessToken, IShopApiResponse } from '@contract/shopify/shop';
 import { ShopifyApiService } from './ShopifyApiService';
 import i18next from 'i18next';
+import { STATUS } from '@constant/common';
+import { WebhookRegister } from '@app/Jobs/WebhookRegister';
 
 @injectable()
 export class AuthService extends BaseService {
@@ -88,7 +90,7 @@ export class AuthService extends BaseService {
             timezone: res.shop.timezone,
             plan_name: res.shop.plan_name,
             country: res.shop.country,
-            status: 1,
+            status: STATUS.ACTIVATED,
             currency: res.shop.currency,
             access_token: accessToken,
             money_format: res.shop.money_format,
@@ -136,7 +138,17 @@ export class AuthService extends BaseService {
         });
 
         let installType = Shop.NEW_INSTALL_APP;
-        if (shopInfo) {
+        if (
+            shopInfo &&
+            _.get(shopInfo, 'dataValues.status') == STATUS.ACTIVATED
+        ) {
+            this.setStatus(true);
+            return this;
+        }
+        if (
+            shopInfo &&
+            _.get(shopInfo, 'dataValues.status') == STATUS.INACTIVATED
+        ) {
             installType = Shop.REINSTALL_APP;
         }
 
@@ -158,6 +170,8 @@ export class AuthService extends BaseService {
             accessToken,
             installType == Shop.NEW_INSTALL_APP ? false : true,
         );
+        /* Register webhooks */
+        new WebhookRegister().setPayload({access_token: accessToken, shopify_domain: request.query.shop as string}).dispatch();
         this.setStatus(true);
         this.setMessage('success');
         this.setData(res.data.shop);

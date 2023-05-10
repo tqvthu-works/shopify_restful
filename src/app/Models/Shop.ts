@@ -1,7 +1,8 @@
 import { Model, DataTypes, Optional } from 'sequelize';
 import { sequelize } from '../../database/index';
 import { injectable } from 'inversify';
-import { paginate } from './Traits/CommonTraits';
+import { paginate } from '@app/Models/Traits/CommonTraits';
+import { TStatus } from '@contract/common';
 
 export interface ShopAttributes {
     id: number;
@@ -21,7 +22,7 @@ export interface ShopAttributes {
     money_with_currency_format: string | null;
     uninstalled_at: Date | null;
     plan_name: string | null;
-    status: number;
+    status: TStatus;
     is_test?: boolean;
 }
 
@@ -56,7 +57,7 @@ export class Shop
     public money_with_currency_format: string | null;
     public uninstalled_at: Date | null;
     public plan_name: string | null;
-    public status: number;
+    public status: TStatus;
     public is_test: boolean;
 
     public readonly created_at!: Date;
