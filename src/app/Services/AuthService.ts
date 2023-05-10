@@ -171,7 +171,12 @@ export class AuthService extends BaseService {
             installType == Shop.NEW_INSTALL_APP ? false : true,
         );
         /* Register webhooks */
-        new WebhookRegister().setPayload({access_token: accessToken, shopify_domain: request.query.shop as string}).dispatch();
+        new WebhookRegister()
+            .setPayload({
+                access_token: accessToken,
+                shopify_domain: request.query.shop as string,
+            })
+            .dispatch();
         this.setStatus(true);
         this.setMessage('success');
         this.setData(res.data.shop);
