@@ -37,6 +37,6 @@ export class ApiController {
             result['sentry_id'] = data.getSentryId();
         }
 
-        return res.status(httpStatus.OK).json(result);
+        return res.status(data.getHttpCode()).json(result);
     }
 }
