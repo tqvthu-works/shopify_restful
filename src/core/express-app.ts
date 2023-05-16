@@ -5,10 +5,19 @@ import { appConfig } from '@config/app';
 import { default as HTTP_STATUS_CODE } from 'http-status';
 import * as Sentry from '@sentry/node';
 import { APP_ENVS } from '@constant/app';
+import { IncomingMessage } from 'http';
+import { Buffer } from 'buffer';
 
 export class ExpressApp {
     public static load(app: express.Express, router: express.Router): void {
-        app.use(express.json({ limit: '500kb' }));
+        app.use(
+            express.json({
+                limit: '500kb',
+                verify: (req: IncomingMessage, _, buffer: Buffer) => {
+                    req.raw_body = buffer;
+                },
+            }),
+        );
         app.use(express.urlencoded({ limit: '500kb', extended: false }));
         app.use(router);
         app.use((req, _, next) => {
@@ -43,7 +52,6 @@ export class ExpressApp {
         };
 
         app.use(errorHandler);
-        /*  Handle not found */
         router.use((_, res: express.Response) => {
             return res.status(HTTP_STATUS_CODE.NOT_FOUND).json({
                 code: HTTP_STATUS_CODE.NOT_FOUND,

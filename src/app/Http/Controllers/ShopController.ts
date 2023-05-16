@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import { ApiController } from './ApiController';
 
 @injectable()
-export class ShopController extends ApiController {
+class ShopController extends ApiController {
     protected shopService: ShopService;
 
     constructor(@inject(ShopService) shopService: ShopService) {
@@ -18,3 +18,4 @@ export class ShopController extends ApiController {
         return this.response(response, await this.shopService.detail(request));
     }
 }
+export default container.resolve<ShopController>(ShopController);
