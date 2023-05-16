@@ -1,10 +1,7 @@
 import Express from 'express';
-import { ShopController } from '@app/Http/Controllers/ShopController';
-import { handler } from '@core/http/controller-handler';
 import { ShopifyAuth } from '@app/Http/Middleware/ShopifyAuth';
 import { ShopRequest } from '@app/Http/Request/ShopRequest';
-
-const shopController = container.resolve<ShopController>(ShopController);
+import ShopController from '@app/Http/Controllers/ShopController';
 const ShopRouter = Express.Router();
 
 /**
@@ -22,6 +19,6 @@ ShopRouter.use(
 ); /* shops prefix */
 
 /* Place to define routes */
-ShopRouter.get('/detail', handler(shopController, 'detail'));
+ShopRouter.get('/detail', ActionHandler(ShopController, 'detail'));
 
 export default ShopRouter;

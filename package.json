@@ -6,13 +6,13 @@
     "scripts": {
         "tsc": "tsc",
         "serve": "node --inspect dist/app/app.js",
-        "local": "npm run lint && concurrently \"tsc -w\" \"nodemon dist/app/app.js\"",
+        "local": "npm run lint && tsc && concurrently \"tsc -w\" \"nodemon dist/app/app.js\"",
         "queue:work": "node --inspect dist/app/worker.js",
         "queue:listen": "npm run lint && concurrently \"tsc -w\" \"nodemon dist/app/worker.js\"",
         "build": "npm run lint && tsc",
         "lint": "eslint \"**/*.{js,ts}\" --quiet --fix",
         "sequelize": "ts-node ./node_modules/.bin/sequelize",
-        "tinker": "ts-node -r module-alias/register -r reflect-metadata --project tsconfig.json --interactive",
+        "tinker": "ts-node -r module-alias/register -r reflect-metadata -r ./src/bootstrap/boot --project tsconfig.json --interactive",
         "cmd": "node dist/app/Console/Kernel.js"
     },
     "repository": {
