@@ -2,7 +2,7 @@ import { Response } from 'express';
 import { BaseService } from '../../Services/BaseService';
 import * as httpStatus from 'http-status';
 import { injectable } from 'inversify';
-import { apiConfiguration } from '../../../config/api';
+import { apiConfig } from '../../../config/api';
 
 @injectable()
 export class ApiController {
@@ -22,7 +22,7 @@ export class ApiController {
         if (!(data instanceof BaseService)) {
             return res.status(httpStatus.OK).json({
                 status: data?.status ?? status,
-                message: message || apiConfiguration.message.error.common,
+                message: message || apiConfig.message.error.common,
                 data: data || [],
             });
         }

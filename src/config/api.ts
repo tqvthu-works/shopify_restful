@@ -1,4 +1,4 @@
-export const apiConfiguration = {
+export const apiConfig = {
     per_page: 20,
     max_per_page: 250,
     message: {

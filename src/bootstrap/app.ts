@@ -2,12 +2,10 @@ import 'reflect-metadata';
 import './boot';
 import express from 'express';
 import * as http from 'http';
-import { config } from 'dotenv';
 import { ConsoleLog } from '@app/Helpers/ConsoleLog';
 import * as Sentry from '@sentry/node';
 import { sentryConfig } from '@config/sentry';
 import { ExpressApp } from '@core/express-app';
-config();
 
 export class App {
     private router: express.Router;

@@ -1,6 +1,4 @@
-import { config } from 'dotenv';
 import { appConfig } from './app';
-config();
 const shopifyConfig = {
     api_key: process.env.SHOPIFY_API_KEY,
     api_secret: process.env.SHOPIFY_API_SECRET,

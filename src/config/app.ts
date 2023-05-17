@@ -1,5 +1,3 @@
-import { config } from 'dotenv';
-config();
 export const appConfig = {
     env: process.env.APP_ENV,
     lang: ['en'],
