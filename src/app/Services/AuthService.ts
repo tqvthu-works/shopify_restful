@@ -4,7 +4,7 @@ import { Request } from 'express';
 import { v4 as uuid } from 'uuid';
 import { shopifyConfig } from '@config/shopify';
 import { BaseService } from './BaseService';
-import { apiConfiguration } from '@config/api';
+import { apiConfig } from '@config/api';
 import querystring from 'querystring';
 import crypto from 'crypto';
 import axios from 'axios';
@@ -27,7 +27,7 @@ export class AuthService extends BaseService {
     public async buildInstallUrl(request: Request): Promise<this> {
         try {
             this.setStatus(true);
-            this.setMessage(apiConfiguration.message.success.common);
+            this.setMessage(apiConfig.message.success.common);
             const { shop } = request.query;
             const urlStore = `${shop}/admin`;
             const redirectUrl = `${shopifyConfig.api_host}/api/auth/callback`;
@@ -38,7 +38,7 @@ export class AuthService extends BaseService {
             this.setData({ url: url });
         } catch (error) {
             this.setStatus(false);
-            this.setMessage(apiConfiguration.message.error.common);
+            this.setMessage(apiConfig.message.error.common);
             this.setSentryId(this.sentry.captureException(error).toString());
         }
         return this;
@@ -106,7 +106,7 @@ export class AuthService extends BaseService {
     }
     public async handleAuthCallback(request: Request): Promise<this> {
         this.setStatus(false);
-        this.setMessage(apiConfiguration.message.error.common);
+        this.setMessage(apiConfig.message.error.common);
         const verify = this.verifyRequest(request);
         if (!verify) {
             this.setMessage(

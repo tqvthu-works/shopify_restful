@@ -1,6 +1,4 @@
-import { config } from 'dotenv';
 import { IRedisConfig } from '@contract/redis';
-config();
 export const redisConfig: IRedisConfig = {
     default: {
         host: process.env.REDIS_HOST_URI,
