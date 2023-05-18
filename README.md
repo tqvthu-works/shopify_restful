@@ -25,6 +25,10 @@ This is a backend API project built with Node.js and TypeScript. It is used as t
 ```npm run cmd```
 ##### To get into console, use:
 ```npm run tinker```
+###### Some example in tinker
+- Get container: ```const container = global.container```
+- Get service: ```const shopService = container.get('ShopService')```
+- Get binding: ```const Shop = global.container.get('Shop'); const shop = await Shop.findOne({where: {shopify_domain: 'foo.myshopify.com'}})```
 ##### To run a worker, use:
 - Production: ```npm run queue:work --queue={queueName}```
 - Local: ```npm run queue:listen --queue={queueName}```
