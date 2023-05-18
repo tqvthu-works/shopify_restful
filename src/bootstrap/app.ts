@@ -6,6 +6,7 @@ import { ConsoleLog } from '@app/Helpers/ConsoleLog';
 import * as Sentry from '@sentry/node';
 import { sentryConfig } from '@config/sentry';
 import { ExpressApp } from '@core/express-app';
+import { appConfig } from '@config/app';
 
 export class App {
     private router: express.Router;
@@ -33,7 +34,7 @@ export class App {
         const server: http.Server = http.createServer(this.app);
         server.listen(process.env.APP_PORT, () => {
             ConsoleLog.info(
-                `Server running on http://localhost:${process.env.APP_PORT} in ${process.env.APP_ENV} env`,
+                `Server running on ${appConfig.host}:${appConfig.port} in ${appConfig.env} env`,
             );
         });
         return server;
