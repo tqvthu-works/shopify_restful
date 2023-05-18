@@ -1,5 +1,4 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
+import 'dotenv/config';
 import { IConnectionOptions, Dialect } from '../contract/database';
 
 const dbConfig: IConnectionOptions = {

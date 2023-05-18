@@ -1,7 +1,6 @@
 import 'module-alias/register';
 import 'reflect-metadata';
-import { config } from 'dotenv';
-config();
+import 'dotenv/config';
 
 import { Command } from 'commander';
 import { ICommand } from '@core/contract';

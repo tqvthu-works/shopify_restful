@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { IRedisConfig } from '@contract/redis';
 export const redisConfig: IRedisConfig = {
     default: {

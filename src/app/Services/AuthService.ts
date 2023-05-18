@@ -18,7 +18,7 @@ import { WebhookRegister } from '@app/Jobs/WebhookRegister';
 export class AuthService extends BaseService {
     protected shopifyApiService: ShopifyApiService;
     constructor(
-        @inject(ShopifyApiService) shopifyApiService: ShopifyApiService,
+        @inject('ShopifyApiService') shopifyApiService: ShopifyApiService,
     ) {
         super();
         this.shopifyApiService = shopifyApiService;
