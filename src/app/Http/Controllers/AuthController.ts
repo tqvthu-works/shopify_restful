@@ -7,7 +7,7 @@ import { ApiController } from './ApiController';
 class AuthController extends ApiController {
     protected service: AuthService;
 
-    constructor(@inject(AuthService) service: AuthService) {
+    constructor(@inject('AuthService') service: AuthService) {
         super();
         this.service = service;
     }

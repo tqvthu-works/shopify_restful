@@ -1,10 +1,19 @@
+import { AuthService } from '@app/Services/AuthService';
 import { ServiceProvider } from '@core/contract';
+import { ShopifyApiService } from '@app/Services/ShopifyApiService';
+import { ShopService } from '@app/Services/ShopService';
 
 export class AppServiceProvider implements ServiceProvider {
     public register(): void {
-        /* Can code here to register some service, model..etc injection */
+        this.bindServices();
     }
     public boot(): Promise<void> {
         return;
+    }
+    private bindServices(): void {
+        
+        container.bind('ShopService').to(ShopService);
+        container.bind('ShopifyApiService').to(ShopifyApiService);
+        container.bind('AuthService').to(AuthService);
     }
 }

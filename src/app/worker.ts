@@ -1,6 +1,5 @@
 import 'module-alias/register';
-import { config } from 'dotenv';
-config();
+import 'dotenv/config';
 
 import { Handler } from './Exceptions/Handler';
 Handler.handle();

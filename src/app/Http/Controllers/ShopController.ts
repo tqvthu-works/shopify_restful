@@ -7,7 +7,7 @@ import { ApiController } from './ApiController';
 class ShopController extends ApiController {
     protected shopService: ShopService;
 
-    constructor(@inject(ShopService) shopService: ShopService) {
+    constructor(@inject('ShopService') shopService: ShopService) {
         super();
         this.shopService = shopService;
     }

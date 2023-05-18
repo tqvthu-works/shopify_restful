@@ -1,6 +1,5 @@
 import 'module-alias/register';
-import { config } from 'dotenv';
-config();
+import 'dotenv/config';
 import { App } from '@bootstrap/app';
 import { Handler } from './Exceptions/Handler';
 Handler.handle();
