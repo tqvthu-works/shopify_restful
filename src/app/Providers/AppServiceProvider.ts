@@ -11,7 +11,6 @@ export class AppServiceProvider implements ServiceProvider {
         return;
     }
     private bindServices(): void {
-        
         container.bind('ShopService').to(ShopService);
         container.bind('ShopifyApiService').to(ShopifyApiService);
         container.bind('AuthService').to(AuthService);
