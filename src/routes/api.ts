@@ -1,15 +1,12 @@
 import Express from 'express';
-import fs from 'fs';
-import path from 'path';
+import AuthRouter from "@routes/api/auth";
+import ShopRouter from "@routes/api/shop";
+import WebhookRouter from "@routes/api/webhook";
 
 const ApiRouter = Express.Router();
-const apiDir = path.join(__dirname, 'api');
-const files = fs.readdirSync(apiDir);
 
-files.forEach((file: string) => {
-    const fileName = file.split('.')[0];
-    const router = require(path.join(apiDir, fileName)).default;
-    ApiRouter.use(router);
-});
+ApiRouter.use(AuthRouter);
+ApiRouter.use('/shops', ShopRouter);
+ApiRouter.use('/webhooks', WebhookRouter);
 
 export { ApiRouter };

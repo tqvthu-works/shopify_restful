@@ -8,7 +8,6 @@ import { handler } from '@core/http/controller-handler';
 global.container = new Container();
 global._ = require('lodash');
 global.ActionHandler = handler;
-
 Provider.load();
 I18n.load();
 AppContainer.load();
