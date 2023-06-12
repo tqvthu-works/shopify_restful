@@ -30,7 +30,7 @@ export class AuthService extends BaseService {
             this.setMessage(apiConfig.message.success.common);
             const { shop } = request.query;
             const urlStore = `${shop}/admin`;
-            const redirectUrl = `${shopifyConfig.api_host}/api/auth/callback`;
+            const redirectUrl = `${shopifyConfig.api_domain}/api/auth/callback`;
             const apiKey = shopifyConfig.api_key;
             const scopes = shopifyConfig.scopes.join(',');
             const state = uuid();
@@ -93,8 +93,6 @@ export class AuthService extends BaseService {
             status: STATUS.ACTIVATED,
             currency: res.shop.currency,
             access_token: accessToken,
-            money_format: res.shop.money_format,
-            money_with_currency_format: res.shop.money_with_currency_format,
             uninstalled_at: null,
         };
         if (isUpdate) {
@@ -155,7 +153,6 @@ export class AuthService extends BaseService {
         const res = await this.shopifyApiService
             .init(request.query.shop as string, accessToken)
             .get<IShopApiResponse>('shop.json');
-
         if (!res.status) {
             this.setMessage(
                 i18next.t('custom.shopify.get_failed', {

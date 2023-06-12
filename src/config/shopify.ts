@@ -2,10 +2,9 @@ import { appConfig } from './app';
 const shopifyConfig = {
     api_key: process.env.SHOPIFY_API_KEY,
     api_secret: process.env.SHOPIFY_API_SECRET,
-    app_slug: process.env.SHOPIFY_APP_SLUG,
     app_id: process.env.SHOPIFY_APP_ID,
     api_version: process.env.SHOPIFY_API_VERSION,
-    api_host: process.env.HOST,
+    api_domain: process.env.API_DOMAIN,
     scopes: ['read_products', 'read_orders'],
     webhooks: [
         {

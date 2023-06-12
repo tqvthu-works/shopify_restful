@@ -3,6 +3,7 @@ import axios, { AxiosInstance } from 'axios';
 import * as Sentry from '@sentry/node';
 import { shopifyConfig } from '@config/shopify';
 import { IResult, AnyObject } from '@core/contract';
+import { ConsoleLog } from '@app/Helpers/ConsoleLog';
 
 @injectable()
 export class ShopifyApiService {
@@ -45,6 +46,7 @@ export class ShopifyApiService {
         params?: AnyObject,
     ): Promise<IResult<R>> {
         try {
+            ConsoleLog.info(`[GET] ${this.baseUrl}/${uri}`);
             const response = await this.request.get(`/${uri}`, { params });
             return {
                 status: true,
@@ -64,6 +66,11 @@ export class ShopifyApiService {
         payload: AnyObject,
     ): Promise<IResult<R>> {
         try {
+            ConsoleLog.info(
+                `[POST] ${this.baseUrl}/${uri} /n payload ${JSON.stringify(
+                    payload,
+                )}`,
+            );
             const response = await this.request.post(`/${uri}`, payload);
             return {
                 status: true,
@@ -80,6 +87,11 @@ export class ShopifyApiService {
         payload: AnyObject,
     ): Promise<IResult<R>> {
         try {
+            ConsoleLog.info(
+                `[PUT] ${this.baseUrl}/${uri} /n payload ${JSON.stringify(
+                    payload,
+                )}`,
+            );
             const response = await this.request.put(`/${uri}`, payload);
             return {
                 status: true,
@@ -96,6 +108,7 @@ export class ShopifyApiService {
 
     public async delete<R = any>(uri: string): Promise<IResult<R>> {
         try {
+            ConsoleLog.info(`[POST] ${this.baseUrl}/${uri}`);
             const response = await this.request.delete(`/${uri}`);
             return {
                 status: true,
