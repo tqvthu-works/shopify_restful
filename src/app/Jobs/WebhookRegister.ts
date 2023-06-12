@@ -15,7 +15,7 @@ export class WebhookRegister extends JobQueue<IWebhookRegisterJobData> {
         const shopifyDomain = jobData.shopify_domain;
         const accessToken = jobData.access_token;
         const shopifyApiService: ShopifyApiService =
-            container.get(ShopifyApiService);
+            container.get('ShopifyApiService');
         shopifyApiService.init(shopifyDomain, accessToken);
 
         // Delete all webHook before add Web Hook

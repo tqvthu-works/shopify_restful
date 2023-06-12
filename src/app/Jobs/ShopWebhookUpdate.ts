@@ -23,8 +23,6 @@ export class ShopWebhookUpdate extends JobQueue<IShopifyStore> {
         shop.timezone = jobData.iana_timezone;
         shop.country = jobData.country;
         shop.currency = jobData.currency;
-        shop.money_format = jobData.money_format;
-        shop.money_with_currency_format = jobData.money_with_currency_format;
         await shop.save();
         return;
     }

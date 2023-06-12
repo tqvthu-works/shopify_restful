@@ -4,9 +4,7 @@ import { ShopifyWebhookAuth } from '@app/Http/Middleware/ShopifyWebhookAuth';
 
 const WebhookRouter = Express.Router();
 
-WebhookRouter.use(
-    ShopifyWebhookAuth,
-);
+WebhookRouter.use(ShopifyWebhookAuth);
 
 /* Where to define routes */
 WebhookRouter.post(

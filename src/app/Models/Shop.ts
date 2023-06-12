@@ -18,8 +18,6 @@ export interface ShopAttributes {
     access_token: string | null;
     created_at: Date | null;
     updated_at: Date | null;
-    money_format: string | null;
-    money_with_currency_format: string | null;
     uninstalled_at: Date | null;
     plan_name: string | null;
     status: TStatus;
@@ -52,9 +50,6 @@ export class Shop
     public currency: string | null;
     public access_token: string | null;
     public theme_id: number | null;
-    public storefront_access_token: string | null;
-    public money_format: string | null;
-    public money_with_currency_format: string | null;
     public uninstalled_at: Date | null;
     public plan_name: string | null;
     public status: TStatus;
@@ -67,7 +62,7 @@ export class Shop
 Shop.init(
     {
         id: {
-            type: DataTypes.BIGINT.UNSIGNED,
+            type: DataTypes.BIGINT,
             autoIncrement: true,
             primaryKey: true,
         },
@@ -117,14 +112,6 @@ Shop.init(
         },
         updated_at: {
             type: DataTypes.DATE,
-            allowNull: true,
-        },
-        money_format: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
-        money_with_currency_format: {
-            type: DataTypes.STRING,
             allowNull: true,
         },
         uninstalled_at: {
