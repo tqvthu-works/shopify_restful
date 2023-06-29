@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import './boot';
 import Queue, { Job } from 'bull';
-import { redisConfig } from '@config/redis';
+import { redisConfig, queues } from '@config/redis';
 import { REDIS } from '@constant/redis';
 import { ConsoleLog } from '@app/Helpers/ConsoleLog';
 import { IJobData } from '@core/contract';
@@ -9,17 +9,18 @@ import { IJobData } from '@core/contract';
 export class Worker {
     private queue: string;
     private connection: string;
+
     constructor(queue?: string, connection?: string) {
         this.queue = queue ?? REDIS.QUEUE_DEFAULT;
         this.connection = connection ?? REDIS.CONNECTION_DEFAULT;
     }
+
     public serve(): void {
         ConsoleLog.info(
             `Processing jobs from the [${this.queue}] queue`,
             false,
         );
-        const connections: string[] = Object.values(REDIS);
-        if (!connections.includes(this.connection)) {
+        if (!queues.includes(this.connection)) {
             ConsoleLog.debug(
                 `No connection with name ${this.connection} found!` +
                     `. Therefore, the worker is using [${REDIS.CONNECTION_DEFAULT}] connection`,
