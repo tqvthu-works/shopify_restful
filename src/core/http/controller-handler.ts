@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express';
-export const handler = <C = any>(
-    controller: C,
+import { interfaces } from 'inversify';
+export const handler = <C extends interfaces.Newable<any>>(
+    ControllerClass: C,
     action: string,
 ): RequestHandler => {
     const fnc: RequestHandler = async (
@@ -9,6 +10,7 @@ export const handler = <C = any>(
         next: NextFunction,
     ) => {
         try {
+            const controller = container.resolve(ControllerClass);
             await controller[action](req, res);
         } catch (err) {
             return next(err); // pass the error to the error handling middleware

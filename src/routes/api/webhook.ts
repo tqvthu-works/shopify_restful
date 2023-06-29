@@ -1,5 +1,5 @@
 import Express from 'express';
-import ShopWebhookController from '@app/Http/Controllers/Webhooks/ShopWebhookController';
+import { ShopWebhookController } from '@app/Http/Controllers/Webhooks/ShopWebhookController';
 import { ShopifyWebhookAuth } from '@app/Http/Middleware/ShopifyWebhookAuth';
 
 const WebhookRouter = Express.Router();

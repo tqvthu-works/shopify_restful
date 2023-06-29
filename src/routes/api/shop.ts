@@ -1,7 +1,7 @@
 import Express from 'express';
 import { ShopifyAuth } from '@app/Http/Middleware/ShopifyAuth';
 import { ShopRequest } from '@app/Http/Request/ShopRequest';
-import ShopController from '@app/Http/Controllers/ShopController';
+import { ShopController } from '@app/Http/Controllers/ShopController';
 const ShopRouter = Express.Router();
 
 ShopRouter.use(ShopifyAuth, (req, res, next) => {
