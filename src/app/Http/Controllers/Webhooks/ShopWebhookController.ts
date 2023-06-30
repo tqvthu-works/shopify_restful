@@ -5,10 +5,7 @@ import { ShopWebhookUpdate } from '@app/Jobs/ShopWebhookUpdate';
 
 @injectable()
 export class ShopWebhookController {
-    public async update(
-        request: Request,
-        response: Response,
-    ): Promise<Response> {
+    public async update(request: Request, response: Response): Promise<Response> {
         new ShopWebhookUpdate().setPayload(request.body).dispatch();
         return response.status(HTTP_STATUS_CODE.OK).json();
     }

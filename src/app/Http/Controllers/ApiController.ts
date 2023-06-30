@@ -13,24 +13,19 @@ export class ApiController {
      * @param status boolean
      * @param message string
      */
-    public response(
-        res: Response,
-        data: BaseService | any,
-        status = true,
-        message = '',
-    ): any {
+    public response(res: Response, data: BaseService | any, status = true, message = ''): any {
         if (!(data instanceof BaseService)) {
             return res.status(httpStatus.OK).json({
                 status: data?.status ?? status,
                 message: message || apiConfig.message.error.common,
-                data: data || [],
+                data: data || []
             });
         }
 
         const result = {
             status: data.getStatus(),
             message: data.getMessage(),
-            data: data.getData(),
+            data: data.getData()
         };
         if (data.getErrors() || data.getSentryId()) {
             result['errors'] = data.getErrors();

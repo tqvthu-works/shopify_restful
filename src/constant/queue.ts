@@ -1,4 +1,4 @@
 export const QUEUE = {
     WEBHOOK: 'webhook',
-    DEFAULT: 'default',
+    DEFAULT: 'default'
 } as const;

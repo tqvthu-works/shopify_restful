@@ -14,8 +14,7 @@ export class WebhookRegister extends JobQueue<IWebhookRegisterJobData> {
         const jobData = this.getPayload();
         const shopifyDomain = jobData.shopify_domain;
         const accessToken = jobData.access_token;
-        const shopifyApiService: ShopifyApiService =
-            container.get('ShopifyApiService');
+        const shopifyApiService: ShopifyApiService = container.get('ShopifyApiService');
         shopifyApiService.init(shopifyDomain, accessToken);
 
         // Delete all webHook before add Web Hook
@@ -27,16 +26,14 @@ export class WebhookRegister extends JobQueue<IWebhookRegisterJobData> {
                 webhook: {
                     address: v.address,
                     topic: v.topic,
-                    format: 'json',
-                },
+                    format: 'json'
+                }
             });
         }
 
         return;
     }
-    private async deleteExistingWebhooks(
-        shopifyApiService: ShopifyApiService,
-    ): Promise<void> {
+    private async deleteExistingWebhooks(shopifyApiService: ShopifyApiService): Promise<void> {
         const response = await shopifyApiService.get('webhooks.json');
         if (!response.status) {
             return;

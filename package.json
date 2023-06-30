@@ -6,9 +6,9 @@
     "scripts": {
         "tsc": "tsc",
         "serve": "node --inspect dist/app/app.js",
-        "local": "npm run lint && tsc && concurrently \"tsc -w\" \"nodemon dist/app/app.js\"",
+        "local": "tsnd --respawn --pretty --exit-child --transpile-only src/app/app.ts",
         "queue:work": "node --inspect dist/app/worker.js",
-        "queue:listen": "npm run lint && concurrently \"tsc -w\" \"nodemon dist/app/worker.js\"",
+        "queue:listen": "tsnd --respawn --pretty --exit-child --transpile-only src/app/worker.ts",
         "build": "npm run lint && tsc",
         "lint": "eslint \"**/*.{js,ts}\" --quiet --fix",
         "sequelize": "ts-node ./node_modules/.bin/sequelize",
@@ -81,6 +81,7 @@
         "npm": "^9.5.1",
         "prettier": "^2.8.8",
         "sequelize-cli": "6.3.0",
-        "ts-node": "^10.9.1"
+        "ts-node": "^10.9.1",
+        "ts-node-dev": "^2.0.0"
     }
 }

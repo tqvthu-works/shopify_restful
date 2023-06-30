@@ -3,10 +3,10 @@ export const apiConfig = {
     max_per_page: 250,
     message: {
         error: {
-            common: 'An error occurred',
+            common: 'An error occurred'
         },
         success: {
-            common: 'Successfully.',
-        },
-    },
+            common: 'Successfully.'
+        }
+    }
 };

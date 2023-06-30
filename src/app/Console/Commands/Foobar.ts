@@ -11,8 +11,17 @@ export class Foobar implements ICommand {
             .description(this.description)
             .argument('<foo>')
             .argument('<bar>')
-            .action(async function (foo, bar) {
-                console.log(`foo=${foo}`, `bar=${bar}`, 'args=', this.args);
-            });
+            .action(
+                async function (foo, bar): Promise<void> {
+                    await this.process(foo, bar);
+                    console.log(foo, bar, program.args);
+                }.bind(this)
+            );
+    }
+    private async process(foo: string, bar: string, args?: string[]): Promise<void> {
+        /**
+         * logic code here
+         */
+        return;
     }
 }

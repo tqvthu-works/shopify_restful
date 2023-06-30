@@ -9,12 +9,12 @@ const shopifyConfig = {
     webhooks: [
         {
             address: `${appConfig.webhook_host}/api/webhooks/shops/uninstall`,
-            topic: 'app/uninstalled',
+            topic: 'app/uninstalled'
         },
         {
             address: `${appConfig.webhook_host}/api/webhooks/shops/update`,
-            topic: 'shop/update',
-        },
-    ],
+            topic: 'shop/update'
+        }
+    ]
 };
 export { shopifyConfig };

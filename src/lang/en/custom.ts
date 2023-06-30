@@ -13,10 +13,10 @@ export default {
     shopify: {
         get_failed: 'Failed to get {{ attribute }}',
         validate_failed: 'Failed to validate {{ attribute }}',
-        webhook_failed: 'Invalid webhook signature',
+        webhook_failed: 'Invalid webhook signature'
     },
     http: {
         not_found: 'route not found',
-        internal_error: 'internal server error',
-    },
+        internal_error: 'internal server error'
+    }
 };

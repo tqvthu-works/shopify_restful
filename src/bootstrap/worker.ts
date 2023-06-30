@@ -16,37 +16,30 @@ export class Worker {
     }
 
     public serve(): void {
-        ConsoleLog.info(
-            `Processing jobs from the [${this.queue}] queue`,
-            false,
-        );
-        if (!queues.includes(this.connection)) {
-            ConsoleLog.debug(
-                `No connection with name ${this.connection} found!` +
-                    `. Therefore, the worker is using [${REDIS.CONNECTION_DEFAULT}] connection`,
-                false,
+        if (!queues.includes(this.queue)) {
+            ConsoleLog.error(
+                `No queue with name ${this.queue} found. Please check your config in @config/redis/queue.ts`
             );
-            ConsoleLog.debug(
-                `Please check your config in @config/redis/queue.ts`,
-                false,
+            return;
+        }
+        ConsoleLog.info(`Processing jobs from the [${this.queue}] queue`, false);
+        if (!Object.keys(redisConfig).includes(this.connection)) {
+            ConsoleLog.error(
+                // eslint-disable-next-line max-len
+                `The [${this.connection}] connection has not been configured. Please check your config in @config/redis/queue.ts`,
+                false
             );
-            this.connection = REDIS.CONNECTION_DEFAULT;
+            return;
         }
         const config = redisConfig[this.connection];
-        const queue: Queue.Queue = new Queue(
-            this.queue,
-            `redis://${config.host}`,
-            {
-                redis: { db: config.db as any },
-            },
-        );
+        const queue: Queue.Queue = new Queue(this.queue, `redis://${config.host}`, {
+            redis: { db: config.db as any }
+        });
         queue.process(async (job: Job<IJobData>): Promise<any> => {
             try {
                 const data = job.data;
                 const start = Date.now();
-                ConsoleLog.info(
-                    `app/Jobs/${data.job_path}...........................RUNNING`,
-                );
+                ConsoleLog.info(`app/Jobs/${data.job_path}...........................RUNNING`);
 
                 const module = require(`@app/Jobs/${data.job_path}`);
                 const jobHandler = module[data.job_path];
@@ -55,9 +48,7 @@ export class Worker {
                 await instance.handle();
                 const end = Date.now();
                 ConsoleLog.info(
-                    `app/Jobs/${data.job_path}..........................${
-                        end - start
-                    }ms DONE`,
+                    `app/Jobs/${data.job_path}..........................${end - start}ms DONE`
                 );
             } catch (error) {
                 ConsoleLog.error(error);

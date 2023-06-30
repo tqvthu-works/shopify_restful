@@ -5,10 +5,7 @@ export class ConsoleLog {
         if (!includeDateTime) {
             console.log(color.bgCyan(`INFO`), message);
         } else {
-            console.log(
-                color.bgCyan(`INFO ${new Date().toISOString()}`),
-                message,
-            );
+            console.log(color.bgCyan(`INFO ${new Date().toISOString()}`), message);
         }
     }
 
@@ -16,10 +13,7 @@ export class ConsoleLog {
         if (!includeDateTime) {
             console.log(color.bgYellow(`DEBUG`), message);
         } else {
-            console.log(
-                color.bgYellow(`DEBUG ${new Date().toISOString()}`),
-                message,
-            );
+            console.log(color.bgYellow(`DEBUG ${new Date().toISOString()}`), message);
         }
     }
 
@@ -27,10 +21,7 @@ export class ConsoleLog {
         if (!includeDateTime) {
             console.log(color.bgRed(`ERROR`), message);
         } else {
-            console.log(
-                color.bgRed(`ERROR ${new Date().toISOString()}`),
-                message,
-            );
+            console.log(color.bgRed(`ERROR ${new Date().toISOString()}`), message);
         }
     }
 }

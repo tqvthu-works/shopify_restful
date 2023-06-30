@@ -6,7 +6,7 @@ export class Container {
         /* Bind Model */
         const directoryPath = path.join(__dirname, '../app/Models');
         const files = fs.readdirSync(directoryPath);
-        files.forEach((file) => {
+        files.forEach(file => {
             const filePath = `${directoryPath}/${file}`;
             const fileStats = fs.statSync(filePath);
             if (fileStats.isDirectory()) {

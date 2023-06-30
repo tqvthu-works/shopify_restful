@@ -24,7 +24,7 @@ export class App {
         Sentry.init({
             dsn: sentryConfig.DNS,
             environment: process.env.APP_ENV,
-            tracesSampleRate: 1.0,
+            tracesSampleRate: 1.0
         });
     }
 
@@ -34,7 +34,7 @@ export class App {
         const server: http.Server = http.createServer(this.app);
         server.listen(process.env.APP_PORT, () => {
             ConsoleLog.info(
-                `Server running on ${appConfig.host}:${appConfig.port} in ${appConfig.env} env`,
+                `Server running on ${appConfig.host}:${appConfig.port} in ${appConfig.env} env`
             );
         });
         return server;
