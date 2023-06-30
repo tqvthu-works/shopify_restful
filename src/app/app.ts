@@ -1,4 +1,3 @@
-import 'module-alias/register';
 import 'dotenv/config';
 import '../module-aliases';
 import { App } from '@bootstrap/app';
