@@ -4,7 +4,7 @@ export const paginate = <M>(
     isUnique = true,
     direction: 'desc' | 'asc',
     cursor: string,
-    perPage: number,
+    perPage: number
 ): any => {
     const orders = [];
     const input = JSON.parse(Buffer.from(cursor, 'base64').toString('utf-8'));
@@ -19,13 +19,13 @@ export const paginate = <M>(
                 { [sortField]: { [Op.lt]: input[sortField] } },
                 {
                     [sortField]: input[sortField],
-                    [sortField]: { [Op.lt]: input[sortField] },
-                },
-            ],
+                    [sortField]: { [Op.lt]: input[sortField] }
+                }
+            ]
         };
     }
     return {
         where: where,
-        order: orders,
+        order: orders
     };
 };

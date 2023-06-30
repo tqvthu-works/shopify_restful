@@ -7,9 +7,6 @@ const WebhookRouter = Express.Router();
 WebhookRouter.use(ShopifyWebhookAuth);
 
 /* Where to define routes */
-WebhookRouter.post(
-    '/shops/update',
-    ActionHandler(ShopWebhookController, 'update'),
-);
+WebhookRouter.post('/shops/update', ActionHandler(ShopWebhookController, 'update'));
 
 export default WebhookRouter;

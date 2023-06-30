@@ -12,9 +12,9 @@ export class ShopRequest extends Validator {
                     i18next.t('validation.required_if', {
                         attribute: 'shopify_domain',
                         other: 'is_testing',
-                        value: true,
-                    }),
-                ),
+                        value: true
+                    })
+                )
         ];
 
         return chains;

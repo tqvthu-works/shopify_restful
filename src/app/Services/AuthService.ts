@@ -17,9 +17,7 @@ import { WebhookRegister } from '@app/Jobs/WebhookRegister';
 @injectable()
 export class AuthService extends BaseService {
     protected shopifyApiService: ShopifyApiService;
-    constructor(
-        @inject('ShopifyApiService') shopifyApiService: ShopifyApiService,
-    ) {
+    constructor(@inject('ShopifyApiService') shopifyApiService: ShopifyApiService) {
         super();
         this.shopifyApiService = shopifyApiService;
     }
@@ -49,7 +47,7 @@ export class AuthService extends BaseService {
             host: request.query.host as string,
             shop: request.query.shop as string,
             state: request.query.state as string,
-            timestamp: request.query.timestamp as string,
+            timestamp: request.query.timestamp as string
         });
         const match = request.query.hmac;
         const calculated = crypto
@@ -59,25 +57,22 @@ export class AuthService extends BaseService {
         return calculated === match;
     }
 
-    private async getAccessData(
-        code: string,
-        shopifyDomain: string,
-    ): Promise<IAccessToken> {
+    private async getAccessData(code: string, shopifyDomain: string): Promise<IAccessToken> {
         const data = {
             client_id: shopifyConfig.api_key,
             client_secret: shopifyConfig.api_secret,
-            code: code,
+            code: code
         };
         const response = await axios.post(
             `https://${shopifyDomain}/admin/oauth/access_token`,
-            data,
+            data
         );
         return response.data;
     }
     private async upsertShop(
         res: IShopApiResponse,
         accessToken: string,
-        isUpdate?: boolean,
+        isUpdate?: boolean
     ): Promise<void> {
         const shopData: ShopCreationAttributes = {
             id: res.shop.id,
@@ -93,7 +88,7 @@ export class AuthService extends BaseService {
             status: STATUS.ACTIVATED,
             currency: res.shop.currency,
             access_token: accessToken,
-            uninstalled_at: null,
+            uninstalled_at: null
         };
         if (isUpdate) {
             await Shop.update(shopData, { where: { id: shopData.id } });
@@ -109,8 +104,8 @@ export class AuthService extends BaseService {
         if (!verify) {
             this.setMessage(
                 i18next.t('custom.shopify.validate_failed', {
-                    attribute: 'hmac',
-                }),
+                    attribute: 'hmac'
+                })
             );
             return this;
         }
@@ -118,35 +113,29 @@ export class AuthService extends BaseService {
         // get shopify access token
         const accessData = await this.getAccessData(
             request.query.code as string,
-            request.query.shop as string,
+            request.query.shop as string
         );
         if (!accessData) {
             this.setMessage(
                 i18next.t('custom.shopify.get_failed', {
-                    attribute: 'Shop detail',
-                }),
+                    attribute: 'Shop detail'
+                })
             );
             return this;
         }
         const accessToken = accessData['access_token'];
         const shopInfo = await Shop.findOne({
             where: {
-                shopify_domain: request.query.shop as string,
-            },
+                shopify_domain: request.query.shop as string
+            }
         });
 
         let installType = Shop.NEW_INSTALL_APP;
-        if (
-            shopInfo &&
-            _.get(shopInfo, 'dataValues.status') == STATUS.ACTIVATED
-        ) {
+        if (shopInfo && _.get(shopInfo, 'dataValues.status') == STATUS.ACTIVATED) {
             this.setStatus(true);
             return this;
         }
-        if (
-            shopInfo &&
-            _.get(shopInfo, 'dataValues.status') == STATUS.INACTIVATED
-        ) {
+        if (shopInfo && _.get(shopInfo, 'dataValues.status') == STATUS.INACTIVATED) {
             installType = Shop.REINSTALL_APP;
         }
 
@@ -156,8 +145,8 @@ export class AuthService extends BaseService {
         if (!res.status) {
             this.setMessage(
                 i18next.t('custom.shopify.get_failed', {
-                    attribute: 'Shop detail',
-                }),
+                    attribute: 'Shop detail'
+                })
             );
             return this;
         }
@@ -165,13 +154,13 @@ export class AuthService extends BaseService {
         await this.upsertShop(
             res.data,
             accessToken,
-            installType == Shop.NEW_INSTALL_APP ? false : true,
+            installType == Shop.NEW_INSTALL_APP ? false : true
         );
         /* Register webhooks */
         new WebhookRegister()
             .setPayload({
                 access_token: accessToken,
-                shopify_domain: request.query.shop as string,
+                shopify_domain: request.query.shop as string
             })
             .dispatch();
         this.setStatus(true);

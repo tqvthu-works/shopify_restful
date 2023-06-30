@@ -4,11 +4,7 @@ export class Provider {
     public static load(): void {
         const providers = appConfig.providers;
         for (const providerName of providers) {
-            const provider = _.get(
-                require(`@app/Providers/${providerName}`),
-                providerName,
-                null,
-            );
+            const provider = _.get(require(`@app/Providers/${providerName}`), providerName, null);
             if (!provider) {
                 continue;
             }

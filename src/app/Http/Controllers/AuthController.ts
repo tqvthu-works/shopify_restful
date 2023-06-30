@@ -11,22 +11,10 @@ export class AuthController extends ApiController {
         super();
         this.service = service;
     }
-    public async install(
-        request: Request,
-        response: Response,
-    ): Promise<Response> {
-        return this.response(
-            response,
-            await this.service.buildInstallUrl(request),
-        );
+    public async install(request: Request, response: Response): Promise<Response> {
+        return this.response(response, await this.service.buildInstallUrl(request));
     }
-    public async authCallback(
-        request: Request,
-        response: Response,
-    ): Promise<Response> {
-        return this.response(
-            response,
-            await this.service.handleAuthCallback(request),
-        );
+    public async authCallback(request: Request, response: Response): Promise<Response> {
+        return this.response(response, await this.service.handleAuthCallback(request));
     }
 }

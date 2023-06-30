@@ -11,10 +11,7 @@ export class ShopController extends ApiController {
         super();
         this.shopService = shopService;
     }
-    public async detail(
-        request: Request,
-        response: Response,
-    ): Promise<Response> {
+    public async detail(request: Request, response: Response): Promise<Response> {
         return this.response(response, await this.shopService.detail(request));
     }
 }

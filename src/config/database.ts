@@ -8,7 +8,7 @@ const dbConfig: IConnectionOptions = {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
     dialect: (process.env.DB_CONNECTION ?? 'mysql') as Dialect,
-    migrationStorageTableName: 'migrations',
+    migrationStorageTableName: 'migrations'
 };
 /**
  * Use module.exports instead of export default because

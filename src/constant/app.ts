@@ -3,5 +3,5 @@ export const APP_ENVS = {
     DEVELOPMENT: 'development',
     TESTING: 'testing',
     STAGING: 'staging',
-    PRODUCTION: 'production',
+    PRODUCTION: 'production'
 } as const;

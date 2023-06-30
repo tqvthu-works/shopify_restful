@@ -9,25 +9,25 @@ import * as httpStatus from 'http-status';
 export const ShopifyAuth = async (
     req: Request,
     res: Response,
-    next: NextFunction,
+    next: NextFunction
 ): Promise<Response | void> => {
     const token = req.headers.authorization?.replace('Bearer ', '') || '';
     try {
         if (_.get(req, 'query.is_testing')) {
             const shop = await Shop.findOne({
                 where: {
-                    shopify_domain: _.get(req, 'query.shopify_domain', ''),
-                },
+                    shopify_domain: _.get(req, 'query.shopify_domain', '')
+                }
             });
             if (!shop || (shop && !_.get(shop, 'dataValues.is_test'))) {
                 return res.status(httpStatus.UNAUTHORIZED).json({
-                    status: false,
+                    status: false
                 });
             }
             req.query = {
                 shop_id: shop.dataValues.id as any,
                 shopify_domain: shop.dataValues.shopify_domain,
-                access_token: shop.dataValues.access_token,
+                access_token: shop.dataValues.access_token
             };
             return next();
         }
@@ -35,26 +35,26 @@ export const ShopifyAuth = async (
         const shopifyDomain = parseUrl(decoded.dest!).host;
         const shop = await Shop.findOne({
             where: {
-                shopify_domain: shopifyDomain as string,
-            },
+                shopify_domain: shopifyDomain as string
+            }
         });
 
         if (!shop) {
             return res.status(httpStatus.UNAUTHORIZED).json({
                 status: false,
-                message: 'Shopify domain does not exist',
+                message: 'Shopify domain does not exist'
             });
         }
 
         req.query = {
             shop_id: shop.dataValues.id as any,
             shopify_domain: shop.dataValues.shopify_domain,
-            access_token: shop.dataValues.access_token,
+            access_token: shop.dataValues.access_token
         };
         return next();
     } catch (err) {
         return res.status(httpStatus.UNAUTHORIZED).json({
-            status: false,
+            status: false
         });
     }
 };

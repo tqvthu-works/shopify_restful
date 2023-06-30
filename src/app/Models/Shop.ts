@@ -24,15 +24,9 @@ export interface ShopAttributes {
     is_test?: boolean;
 }
 
-export type ShopCreationAttributes = Optional<
-    ShopAttributes,
-    'id' | 'created_at' | 'updated_at'
->;
+export type ShopCreationAttributes = Optional<ShopAttributes, 'id' | 'created_at' | 'updated_at'>;
 @injectable()
-export class Shop
-    extends Model<ShopAttributes, ShopCreationAttributes>
-    implements ShopAttributes
-{
+export class Shop extends Model<ShopAttributes, ShopCreationAttributes> implements ShopAttributes {
     public static readonly FREE_PLAN = 'free';
     public static readonly NEW_INSTALL_APP = 'new_install';
     public static readonly REINSTALL_APP = 're_install';
@@ -64,72 +58,72 @@ Shop.init(
         id: {
             type: DataTypes.BIGINT,
             autoIncrement: true,
-            primaryKey: true,
+            primaryKey: true
         },
         name: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: true
         },
         shopify_domain: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: false
         },
         domain: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: true
         },
         owner: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: true
         },
         email: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: true
         },
         phone: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: true
         },
         timezone: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: true
         },
         country: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: true
         },
         currency: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: true
         },
         access_token: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: true
         },
         created_at: {
             type: DataTypes.DATE,
-            allowNull: true,
+            allowNull: true
         },
         updated_at: {
             type: DataTypes.DATE,
-            allowNull: true,
+            allowNull: true
         },
         uninstalled_at: {
             type: DataTypes.DATE,
-            allowNull: true,
+            allowNull: true
         },
         plan_name: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: true
         },
         status: {
             type: DataTypes.NUMBER,
-            allowNull: true,
+            allowNull: true
         },
         is_test: {
             type: DataTypes.BOOLEAN,
-            allowNull: true,
-        },
+            allowNull: true
+        }
     },
     {
         // Other model options go here
@@ -139,7 +133,7 @@ Shop.init(
         createdAt: 'created_at',
         updatedAt: 'updated_at',
         scopes: {
-            paginate,
-        },
-    },
+            paginate
+        }
+    }
 );

@@ -11,26 +11,20 @@ export class I18n {
             if (!_.get(resources, `${locale}.translation`)) {
                 _.set(resources, `${locale}.translation`, {});
             }
-            const files = fs.readdirSync(
-                path.join(__dirname, `../lang/${locale}`),
-            );
-            files.forEach((file) => {
+            const files = fs.readdirSync(path.join(__dirname, `../lang/${locale}`));
+            files.forEach(file => {
                 const fileName = file.split('.')[0];
-                const filePath = path.join(
-                    __dirname,
-                    `../lang/${locale}/${fileName}`,
-                );
-                resources[locale]['translation'][fileName] =
-                    require(filePath).default;
+                const filePath = path.join(__dirname, `../lang/${locale}/${fileName}`);
+                resources[locale]['translation'][fileName] = require(filePath).default;
             });
         };
-        locales.forEach((locale) => {
+        locales.forEach(locale => {
             setResource(locale, resources);
         });
         i18next.init({
             lng: 'en', // if you're using a language detector, do not define the lng option
             debug: false,
-            resources: resources,
+            resources: resources
         });
     }
 }
