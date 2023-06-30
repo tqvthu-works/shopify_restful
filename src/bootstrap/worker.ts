@@ -1,7 +1,8 @@
 import 'reflect-metadata';
 import './boot';
 import Queue, { Job } from 'bull';
-import { redisConfig, queues } from '@config/redis';
+import { redisConfig } from '@config/redis';
+import { queueConfig } from '@config/queue';
 import { REDIS } from '@constant/redis';
 import { ConsoleLog } from '@app/Helpers/ConsoleLog';
 import { IJobData } from '@core/contract';
@@ -16,14 +17,14 @@ export class Worker {
     }
 
     public serve(): void {
-        if (!queues.includes(this.queue)) {
+        if (!queueConfig.queues.includes(this.queue)) {
             ConsoleLog.error(
                 `No queue with name ${this.queue} found. Please check your config in @config/redis/queue.ts`
             );
             return;
         }
         ConsoleLog.info(`Processing jobs from the [${this.queue}] queue`, false);
-        if (!Object.keys(redisConfig).includes(this.connection)) {
+        if (!queueConfig.connections.includes(this.connection)) {
             ConsoleLog.error(
                 // eslint-disable-next-line max-len
                 `The [${this.connection}] connection has not been configured. Please check your config in @config/redis/queue.ts`,

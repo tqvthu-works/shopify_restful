@@ -9,5 +9,3 @@ export const redisConfig: IRedisConfig = {
     }
     /* For another connection */
 };
-
-export const queues: string[] = ['default'].concat(process.env.REDIS_QUEUES.split(','), []);
