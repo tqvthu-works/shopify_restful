@@ -6,11 +6,7 @@ import { shopifyConfig } from '@config/shopify';
 import { AnyObject } from '@core/contract';
 import * as httpStatus from 'http-status';
 
-export const ShopifyAuth = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-): Promise<Response | void> => {
+export const ShopifyAuth = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
     const token = req.headers.authorization?.replace('Bearer ', '') || '';
     try {
         if (_.get(req, 'query.is_testing')) {

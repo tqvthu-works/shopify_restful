@@ -20,11 +20,7 @@ export abstract class Validator {
      * common validate for all feature
      * @return {Response}          [description]
      */
-    public static validate(
-        request: Request,
-        response: Response,
-        next: NextFunction
-    ): Response | any {
+    public static validate(request: Request, response: Response, next: NextFunction): Response | any {
         /* prevent large per_page*/
         const perPage = request.query['per_page'] ?? request.body['per_page'] ?? null;
         if (perPage && (isNaN(perPage) || perPage == 0 || perPage > apiConfig.max_per_page)) {
