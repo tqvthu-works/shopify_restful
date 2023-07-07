@@ -48,9 +48,7 @@ export class Worker {
                 instance.setPayload(data.data);
                 await instance.handle();
                 const end = Date.now();
-                ConsoleLog.info(
-                    `app/Jobs/${data.job_path}..........................${end - start}ms DONE`
-                );
+                ConsoleLog.info(`app/Jobs/${data.job_path}..........................${end - start}ms DONE`);
             } catch (error) {
                 ConsoleLog.error(error);
             }

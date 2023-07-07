@@ -107,8 +107,7 @@ export default {
         mixed: 'The {{attribute}} must contain at least one uppercase and one lowercase letter.',
         numbers: 'The {{attribute}} must contain at least one number.',
         symbols: 'The {{attribute}} must contain at least one symbol.',
-        uncompromised:
-            'The given {{attribute}} has appeared in a data leak. Please choose a different {{attribute}}.'
+        uncompromised: 'The given {{attribute}} has appeared in a data leak. Please choose a different {{attribute}}.'
     },
     present: 'The {{attribute}} field must be present.',
     prohibited: 'The {{attribute}} field is prohibited.',
@@ -124,8 +123,7 @@ export default {
     required_with: 'The {{attribute}} field is required when {{value}}s is present.',
     required_with_all: 'The {{attribute}} field is required when {{value}}s are present.',
     required_without: 'The {{attribute}} field is required when {{value}}s is not present.',
-    required_without_all:
-        'The {{attribute}} field is required when none of {{value}}s are present.',
+    required_without_all: 'The {{attribute}} field is required when none of {{value}}s are present.',
     same: 'The {{attribute}} and {{other}} must match.',
     size: {
         array: 'The {{attribute}} must contain :size items.',

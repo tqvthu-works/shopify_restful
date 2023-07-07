@@ -14,10 +14,7 @@ interface IQueueConfig {
  * will use connection default
  */
 export const queueConfig: IQueueConfig = {
-    queues: ['default'].concat(
-        process.env.REDIS_QUEUES?.split(','),
-        []
-    ) /* list availables queue for app */,
+    queues: ['default'].concat(process.env.REDIS_QUEUES?.split(','), []) /* list availables queue for app */,
     connections: Object.keys(redisConfig),
     queue_connection: {
         /* queue - connection mapping */

@@ -29,9 +29,7 @@ export abstract class JobQueue<P = any> {
     }
     public dispatch(): void {
         const queue: Queue.Queue = queues[this.queue ?? QUEUE.DEFAULT];
-        const jobHandlerPath = this.path
-            ? `${this.path}/${this.constructor.name}`
-            : this.constructor.name;
+        const jobHandlerPath = this.path ? `${this.path}/${this.constructor.name}` : this.constructor.name;
         const jobData: IJobData<P> = {
             job_path: jobHandlerPath,
             data: this.payload

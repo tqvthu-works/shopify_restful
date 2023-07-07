@@ -3,11 +3,7 @@ import { shopifyConfig } from '@config/shopify';
 import * as httpStatus from 'http-status';
 import crypto from 'crypto';
 import i18next from 'i18next';
-export const ShopifyWebhookAuth = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-): Promise<Response | void> => {
+export const ShopifyWebhookAuth = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
     try {
         const hmacHeader: string | undefined = req.header('X-Shopify-Hmac-Sha256');
         const rawBody = req.raw_body;

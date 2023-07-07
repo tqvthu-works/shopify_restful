@@ -50,10 +50,7 @@ export class AuthService extends BaseService {
             timestamp: request.query.timestamp as string
         });
         const match = request.query.hmac;
-        const calculated = crypto
-            .createHmac('sha256', shopifyConfig.api_secret)
-            .update(queryString)
-            .digest('hex');
+        const calculated = crypto.createHmac('sha256', shopifyConfig.api_secret).update(queryString).digest('hex');
         return calculated === match;
     }
 
@@ -63,17 +60,10 @@ export class AuthService extends BaseService {
             client_secret: shopifyConfig.api_secret,
             code: code
         };
-        const response = await axios.post(
-            `https://${shopifyDomain}/admin/oauth/access_token`,
-            data
-        );
+        const response = await axios.post(`https://${shopifyDomain}/admin/oauth/access_token`, data);
         return response.data;
     }
-    private async upsertShop(
-        res: IShopApiResponse,
-        accessToken: string,
-        isUpdate?: boolean
-    ): Promise<void> {
+    private async upsertShop(res: IShopApiResponse, accessToken: string, isUpdate?: boolean): Promise<void> {
         const shopData: ShopCreationAttributes = {
             id: res.shop.id,
             shopify_domain: res.shop.myshopify_domain,
@@ -111,10 +101,7 @@ export class AuthService extends BaseService {
         }
 
         // get shopify access token
-        const accessData = await this.getAccessData(
-            request.query.code as string,
-            request.query.shop as string
-        );
+        const accessData = await this.getAccessData(request.query.code as string, request.query.shop as string);
         if (!accessData) {
             this.setMessage(
                 i18next.t('custom.shopify.get_failed', {
@@ -151,11 +138,7 @@ export class AuthService extends BaseService {
             return this;
         }
 
-        await this.upsertShop(
-            res.data,
-            accessToken,
-            installType == Shop.NEW_INSTALL_APP ? false : true
-        );
+        await this.upsertShop(res.data, accessToken, installType == Shop.NEW_INSTALL_APP ? false : true);
         /* Register webhooks */
         new WebhookRegister()
             .setPayload({

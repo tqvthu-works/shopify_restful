@@ -15,11 +15,7 @@ export class ShopifyApiService {
         this.sentry = Sentry;
     }
 
-    public init(
-        shopifyDomain: string,
-        accessToken: string,
-        headers?: AnyObject
-    ): ShopifyApiService {
+    public init(shopifyDomain: string, accessToken: string, headers?: AnyObject): ShopifyApiService {
         this.baseUrl = `https://${shopifyDomain}/admin/api/${shopifyConfig.api_version}`;
         if (!headers) {
             headers = {
