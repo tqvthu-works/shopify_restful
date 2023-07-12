@@ -5,7 +5,7 @@
     "main": "app.ts",
     "scripts": {
         "tsc": "tsc",
-        "serve": "node --inspect dist/app/app.js",
+        "serve": "node dist/app/app.js",
         "local": "tsnd --respawn --pretty --exit-child --transpile-only src/app/app.ts",
         "queue:work": "node --inspect dist/app/worker.js",
         "queue:listen": "tsnd --respawn --pretty --exit-child --transpile-only src/app/worker.ts",
