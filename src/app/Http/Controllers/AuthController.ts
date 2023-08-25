@@ -16,9 +16,9 @@ export class AuthController extends ApiController {
         return this.response(response, await this.service.buildInstallUrl(request));
     }
     public async authCallback(request: Request, response: Response): Promise<void> {
-        await this.service.handleAuthCallback(request)
+        await this.service.handleAuthCallback(request);
         /* change to your url */
-         const tmpUrl = `https://admin.shopify.com/store/workshop-nfs/apps/${shopifyConfig.api_key}`;
+        const tmpUrl = `https://admin.shopify.com/store/workshop-nfs/apps/${shopifyConfig.api_key}`;
 
         return response.redirect(tmpUrl);
     }

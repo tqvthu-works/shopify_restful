@@ -8,5 +8,6 @@ WebhookRouter.use(ShopifyWebhookAuth);
 
 /* Where to define routes */
 WebhookRouter.post('/shops/update', ActionHandler(ShopWebhookController, 'update'));
+WebhookRouter.post('/shops/uninstall', ActionHandler(ShopWebhookController, 'uninstall'));
 
 export default WebhookRouter;
